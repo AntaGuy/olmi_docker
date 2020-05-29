@@ -35,8 +35,8 @@
       ``` 
 
    2.3. Configure Xdebug:
-      Configure docker/xdebug.ini
-      Uncomment lines in docker/php7.3/Dockerfile
+      Configuration on php.ini
+      In PhpStorm, you need to configure Path mappings
 
 3. Create and start containers
 

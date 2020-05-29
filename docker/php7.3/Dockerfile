@@ -20,7 +20,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
       apt-transport-https \
       ca-certificates \
       gnupg2 \
-    && pecl install amqp \
+    && pecl install amqp xdebug \
+    && docker-php-ext-enable xdebug \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-configure intl \
     && docker-php-ext-install \
@@ -47,11 +48,6 @@ RUN a2ensite vhost.conf
 COPY ./docker/php.ini /usr/local/etc/php/php.ini
 
 RUN a2enmod rewrite
-
-# install Xdebug
-# COPY ./docker/xdebug.sh /tmp/
-# COPY ./docker/xdebug.ini /tmp/
-# RUN chmod u+x /tmp/xdebug.sh && /tmp/xdebug.sh
 
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
