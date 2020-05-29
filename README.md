@@ -34,8 +34,10 @@
       127.0.0.1    olmi.local
       ``` 
 
-   2.3. Configure Xdebug:
+   2.3. Configure Xdebug: (optional)
+
       Configuration on php.ini
+      
       In PhpStorm, you need to configure Path mappings
 
 3. Create and start containers
