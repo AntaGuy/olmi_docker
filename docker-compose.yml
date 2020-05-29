@@ -22,8 +22,8 @@ services:
     volumes:
         - ./var/mysql-data:/var/lib/mysql
     environment:
-        MYSQL_USER: antadis
-        MYSQL_PASSWORD: antadis
+        MYSQL_USER: olmi
+        MYSQL_PASSWORD: olmi
         MYSQL_DATABASE: olmi
         MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
