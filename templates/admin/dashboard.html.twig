@@ -1,0 +1,55 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% set _content_title = 'Admin dashboard' %}
+
+{% block page_title -%}
+    {{ _content_title }}
+{%- endblock %}
+
+{% block content_header %}
+    <h1 class="title">{{ _content_title }}</h1>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Users</h3>
+                </div>
+
+                <div class="panel-body">
+                    <ul class="list-group" style="margin-left: 0;">
+                        <li class="list-group-item">
+                            <span class="badge">{{ usersCount }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"></h3>
+                </div>
+
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"></h3>
+                </div>
+
+                <div class="panel-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

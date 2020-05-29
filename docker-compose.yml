@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ./docker/php7.3/Dockerfile
+    container_name: olmi_php
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+       - db
+       - node
+    volumes:
+      - ./:/var/www/html
+  db:
+    image: mariadb:10.4
+    container_name: olmi_mysql
+    ports:
+      - "3306:3306"
+    volumes:
+        - ./var/mysql-data:/var/lib/mysql
+    environment:
+        MYSQL_USER: antadis
+        MYSQL_PASSWORD: antadis
+        MYSQL_DATABASE: olmi
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  node:
+    build: ./docker/node
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html:rw
+      - ./docker/node/run.sh:/bin/run.sh
+    container_name: olmi_node
+    ports:
+      - "3000:3000"
+
+  maildev: # Réglages à utiliser : URL "maildev" et port 25
+    image: djfarrelly/maildev
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    container_name: olmi_maildev
+    ports:
+      - "1080:80"
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: olmi_phpmyadmin
+      ports:
+          - "8080:80"
+      depends_on:
+          - db
+      environment:
+        PMA_HOST: db

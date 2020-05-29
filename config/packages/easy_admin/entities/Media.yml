@@ -1,0 +1,21 @@
+easy_admin:
+    entities:
+        Media:
+            class: App\Entity\Media
+            label: 'Médias'
+            list:
+                fields:
+                    - id
+                    - { property: 'mimetype', label: 'Mime-type' }
+                    - { property: 'reference', label: 'Référence' }
+                    - { property: 'alt', label: 'Alt' }
+                    - { property: 'image', type: 'image', base_path: '%app.path.media_images%' }
+            form:
+                fields:
+                    - { property: 'reference', label: 'Référence' }
+                    - { property: 'alt', label: 'Alt' }
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'page_block', label: 'Block'}
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.media_images%' }

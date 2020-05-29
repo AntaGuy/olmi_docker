@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Reset your password'|trans() }}{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-12">
+                {{ form_start(resetForm) }}
+                    <h3 class="text-center text-info">{{ 'Reset your password'|trans() }}</h3>
+
+                    {% for flashError in app.flashes('reset_password_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flashError|trans() }}</div>
+                    {% endfor %}
+
+                    <div class="form-group"> 
+                        {{ form_row(resetForm.plainPassword.first, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group"> 
+                        {{ form_row(resetForm.plainPassword.second, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>                            
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="{{ 'Reset password'|trans() }}">
+                    </div>
+
+                    <div class="text-right">
+                        <div><a href="{{ path('app_register') }}" class="text-info">{{ 'Register'|trans() }}</a></div>
+                        <div><a href="{{ path('app_login') }}" class="text-info">{{ 'Sign In'|trans() }}</a></div>
+                    </div>
+                {{ form_end(resetForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

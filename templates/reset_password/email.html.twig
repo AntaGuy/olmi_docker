@@ -1,0 +1,11 @@
+<h1>OLMI</h1>
+
+<p>
+    {{ 'To reset your password, please visit'|trans() }}
+    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ 'here'|trans() }}</a>
+    {{ 'This link will expire in'|trans() }} {{ tokenLifetime|date('g') }} {{ 'hour(s).'|trans() }}
+</p>
+
+<p>
+    {{ 'Regards'|trans() }}
+</p>

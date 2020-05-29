@@ -1,0 +1,27 @@
+easy_admin:
+    entities:
+        PageBlock:
+            class: App\Entity\PageBlock
+            label: 'Block'
+            list:
+                title: 'Liste des blocks de pages'
+                fields: 
+                    - id
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'slug', label: 'Slug' }
+                    - { property: 'position', label: 'Position' }
+                    - { property: 'type', label: 'Type' }
+                    - { property: 'page', label: 'Page' }
+                    - { property: 'enabled', label: 'Active', type: 'boolean' }
+                search:
+                    fields: ['page.title', 'page.slug']
+            form:
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'slug', label: 'Slug' }
+                    - { property: 'type', label: 'Méta titre'}
+                    - { property: 'content', label: 'Description', type: 'fos_ckeditor'}
+                    - { property: 'page', label: 'Page'}
+                    - { property: 'position', label: 'Position', type: 'integer'}
+                    - { property: 'medias', label: 'Médias', type: 'collection'}
+

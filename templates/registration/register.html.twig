@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Register'|trans() }}{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-12">
+                {{ form_start(registrationForm) }}
+                    <h3 class="text-center text-info">{{ 'Register'|trans() }}</h3>
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                        {{ form_row(registrationForm.lastName, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group"> 
+                        {{ form_row(registrationForm.firstName, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group"> 
+                        {{ form_row(registrationForm.username, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group"> 
+                        {{ form_row(registrationForm.email, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group"> 
+                        {{ form_row(registrationForm.plainPassword.first, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group"> 
+                        {{ form_row(registrationForm.plainPassword.second, {'label_attr':{'class':'text-info'}, 'attr':{'class':'form-control'}}) }}
+                    </div>                            
+                    <div class="form-group"> 
+                        {{ form_row(registrationForm.agreeTerms, {'label_attr':{'class':'text-info'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-info btn-md" value="{{ 'Register'|trans() }}">
+                    </div>
+
+                    <div class="text-right">
+                        <div><a href="{{ path('app_login') }}" class="text-info">{{ 'Sign In'|trans() }}</a></div>
+                        <div><a href="{{ path('app_forgot_password_request') }}" class="text-info">{{ 'Forgot Your Password ?'|trans() }}</a></div>
+                    </div>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

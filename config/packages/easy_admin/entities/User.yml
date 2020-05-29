@@ -1,0 +1,29 @@
+easy_admin:
+    entities:
+        User:
+            class: App\Entity\User
+            controller: App\Controller\EasyAdmin\UserController
+            label: 'Utilisateurs'
+            list:
+                title: 'Liste des utilisateurs'
+                fields: 
+                    - id
+                    - { property: 'lastName', label: 'Nom' }
+                    - { property: 'firstName', label: 'Prénom' }
+                    - { property: 'phone', label: 'Téléphone', type: 'tel' }
+                    - { property: 'email', label: 'E-mail', type: 'email' }
+                    - { property: 'roles', label: 'Rôles', type: 'array' }
+                search:
+                    fields: ['user.lastName', 'user.firstName', 'user.email', 'user.phone']
+            form:
+                fields:
+                    - { type: 'group', columns: 6, label: 'Informations' }
+                    - { property: 'lastName', label: 'Nom' }
+                    - { property: 'firstName', label: 'Prénom' }
+                    - { property: 'phone', label: 'Téléphone', type: 'tel', icon: 'phone' }
+                    - { property: 'mobile', label: 'Mobile', type: 'tel', icon: 'phone' }
+                    - { property: 'email', label: 'E-mail', type: 'email', icon: 'email' }
+                    - { type: 'group', columns: 6, label: 'Credentials' }
+                    - { property: 'username', label: 'Identifiant', type_options: { required: false } }
+                    - { property: 'plainPassword', label: 'Mot de passe', type: 'password', type_options: { required: false } }
+                    - { property: 'roles', label: 'Rôles', type: 'choice', type_options: { required: false, mapped: true, expanded: true, multiple: true, choices: { 'Client': 'ROLE_USER', 'Editeur': 'ROLE_EDITOR', 'Administrateur Enr Cert': 'ROLE_ADMIN', 'Administrateur Antadis': 'ROLE_SUPER_ADMIN' }}}

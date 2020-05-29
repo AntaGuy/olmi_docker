@@ -1,0 +1,24 @@
+easy_admin:
+    entities:
+        Page:
+            class: App\Entity\Page
+            label: 'Pages'
+            list:
+                title: 'Liste des pages'
+                fields: 
+                    - id
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'position', label: 'Position' }
+                    - { property: 'enabled', label: 'Active', type: 'boolean' }
+                search:
+                    fields: ['page.title', 'page.description']
+            form:
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'intro_title', label: 'Intro titre' }
+                    - { property: 'meta_title', label: 'Méta titre'}
+                    - { property: 'description', label: 'Description', type: 'fos_ckeditor'}
+                    - { property: 'intro_description', label: 'Intro description'}
+                    - { property: 'meta_description', label: 'Méta description'}
+                    - { property: 'position', label: 'Position', type: 'integer'}
+                    - { property: 'page_blocks', label: 'Blocks', type: 'collection'}

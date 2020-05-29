@@ -1,0 +1,30 @@
+easy_admin:
+    entities:
+        Client:
+            class: App\Entity\User
+            controller: App\Controller\EasyAdmin\UserController
+            label: 'Clients'
+            list:
+                dql_filter: "entity.roles LIKE '%%ROLE_USER%%'"
+                title: 'Liste des clients'
+                fields: 
+                    - id
+                    - { property: 'lastName', label: 'Nom' }
+                    - { property: 'firstName', label: 'Prénom' }
+                    - { property: 'phone', label: 'Téléphone', type: 'tel' }
+                    - { property: 'email', label: 'E-mail', type: 'email' }
+                search:
+                    fields: ['user.lastName', 'user.firstName', 'user.email', 'user.phone']
+            form:
+                fields:
+                    - { type: 'group', columns: 6, label: 'Informations' }
+                    - { property: 'lastName', label: 'Nom' }
+                    - { property: 'firstName', label: 'Prénom' }
+                    - { property: 'phone', label: 'Téléphone', type: 'tel', icon: 'phone' }
+                    - { property: 'mobile', label: 'Mobile', type: 'tel', icon: 'phone' }
+                    - { property: 'email', label: 'E-mail', type: 'email', icon: 'email' }
+                    - { type: 'group', columns: 6, label: 'Credentials' }
+                    - { property: 'username', label: 'Identifiant', type_options: { required: false } }
+                    - { property: 'plainPassword', label: 'Mot de passe', type: 'password', type_options: { required: false } }
+                    - { property: 'roles', label: 'Rôle', type: 'choice', type_options: { required: true, mapped: true, expanded: true, multiple: true, choices: { 'Client': 'ROLE_USER' }}}
+
