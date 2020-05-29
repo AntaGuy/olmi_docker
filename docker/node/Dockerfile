@@ -7,8 +7,6 @@ RUN apk add --no-cache --virtual .build-deps \
 
 RUN apk add --update bash && rm -rf /var/cache/apk/*
 
-RUN yarn global add gulp-cli
-
 RUN mkdir /docker
 ADD run.sh /docker/run.sh
 RUN dos2unix /docker/run.sh \

@@ -5,4 +5,4 @@ yarn
 
 #npm rebuild node-sass
 
-gulp
+yarn encore dev-server --host 0.0.0.0 --disable-host-check

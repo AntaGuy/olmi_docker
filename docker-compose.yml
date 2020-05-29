@@ -31,7 +31,7 @@ services:
     build: ./docker/node
     working_dir: /var/www/html
     volumes:
-      - ./:/var/www/html:rw
+      - .:/var/www/html:rw
       - ./docker/node/run.sh:/bin/run.sh
     container_name: olmi_node
     ports:
