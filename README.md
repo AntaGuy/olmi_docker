@@ -12,7 +12,7 @@
 ## Setting up DEV environment
 1.Clone this repository from GitHub
 
-`git clone https://github.com/joeymasip/docker-symfony4.git`
+`git clone https://github.com/AntaGuy/olmi_docker`
 
 
 2.Setting up DEV environment
