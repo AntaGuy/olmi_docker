@@ -34,8 +34,10 @@
       127.0.0.1    olmi.local
       ``` 
 
-   2.3. Configure Xdebug:
+   2.3. Configure Xdebug: (optional)
+
       Configure docker/xdebug.ini
+      
       Uncomment lines in docker/php7.3/Dockerfile
 
 3. Create and start containers
