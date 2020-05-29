@@ -42,7 +42,7 @@
 
    `docker-compose build`
    `docker-compose up` 
-   =>  yarn encore dev-server --watch will be launched
+   =>  yarn encore dev-server will be launched
 
 4. Connect to web container
 
