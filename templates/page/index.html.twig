@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page index{% endblock %}
+
+{% block body %}
+    <h1>Page index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Description</th>
+                <th>Meta_title</th>
+                <th>Meta_description</th>
+                <th>Position</th>
+                <th>Famille</th>
+                <th>Fiche travaux</th>
+                <th>Enabled</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>DeletedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td>{{ page.title }}</td>
+                <td>{{ page.slug }}</td>
+                <td>{{ page.description }}</td>
+                <td>{{ page.metaTitle }}</td>
+                <td>{{ page.metaDescription }}</td>
+                <td>{{ page.position }}</td>
+                <td>{{ page.family }}</td>
+                <td>{{ page.worksheet }}</td>
+                <td>{{ page.enabled ? 'Yes' : 'No' }}</td>
+                <td>{{ page.createdAt ? page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ page.updatedAt ? page.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ page.deletedAt ? page.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('page_show', {'slug': page.slug}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

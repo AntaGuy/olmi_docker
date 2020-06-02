@@ -14,7 +14,6 @@
 
    `git clone https://github.com/AntaGuy/olmi_docker`
 
-
 2. Setting up DEV environment
 
    2.1. Set another APP_SECRET for application in .env.
@@ -63,6 +62,7 @@
    If it's the first time you can load :
    `php bin/console doctrine:fixture:load` you will have a super admin user : admin@olmi.com / olmi
 
-7. In order to use this application, please open in your browser next url: [http://olmi.local](http://olmi.local).
+7. For the admin you need to run : ```php bin/console ckeditor:install``` then ```php bin/console assets:install```
+8. In order to use this application, please open in your browser next url: [http://olmi.local](http://olmi.local).
   
    Enjoy !

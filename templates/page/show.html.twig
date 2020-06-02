@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page{% endblock %}
+
+{% block body %}
+    <h1>Page</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ page.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ page.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ page.slug }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ page.description }}</td>
+            </tr>
+            <tr>
+                <th>Meta_title</th>
+                <td>{{ page.metaTitle }}</td>
+            </tr>
+            <tr>
+                <th>Meta_description</th>
+                <td>{{ page.metaDescription }}</td>
+            </tr>
+            <tr>
+                <th>Famille</th>
+                <td>{{ page.family }}</td>
+            </tr>
+            <tr>
+                <th>Fiche travaux</th>
+                <td>{{ page.worksheet }}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ page.position }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{{ page.enabled ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ page.createdAt ? page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ page.updatedAt ? page.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DeletedAt</th>
+                <td>{{ page.deletedAt ? page.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('page_index') }}">back to list</a>
+{% endblock %}

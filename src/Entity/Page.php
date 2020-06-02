@@ -10,10 +10,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=PageRepository::class)
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
+ * @UniqueEntity("slug")
  */
 class Page
 {
@@ -41,16 +43,6 @@ class Page
      * @ORM\Column(type="text")
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $intro_title;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $intro_description;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -84,11 +76,26 @@ class Page
     private $page_blocks;
 
     /**
+     * @ORM\OneToOne(targetEntity=Family::class, mappedBy="page", cascade={"persist", "remove"})
+     */
+    private $family;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Worksheet::class, mappedBy="page", cascade={"persist", "remove"})
+     */
+    private $worksheet;
+
+    /**
      * Constructor 
      */
     public function __construct()
     {
         $this->page_blocks = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 
     public function getId(): ?int
@@ -128,30 +135,6 @@ class Page
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getIntroTitle(): ?string
-    {
-        return $this->intro_title;
-    }
-
-    public function setIntroTitle(string $intro_title): self
-    {
-        $this->intro_title = $intro_title;
-
-        return $this;
-    }
-
-    public function getIntroDesciption(): ?string
-    {
-        return $this->intro_desciption;
-    }
-
-    public function setIntroDesciption(string $intro_desciption): self
-    {
-        $this->intro_desciption = $intro_desciption;
 
         return $this;
     }
@@ -235,14 +218,38 @@ class Page
         return $this;
     }
 
-    public function getIntroDescription(): ?string
+    public function getFamily(): ?Family
     {
-        return $this->intro_description;
+        return $this->family;
     }
 
-    public function setIntroDescription(string $intro_description): self
+    public function setFamily(?Family $family): self
     {
-        $this->intro_description = $intro_description;
+        $this->family = $family;
+
+        // set (or unset) the owning side of the relation if necessary
+        $new_page = null === $family ? null : $this;
+        if ($family->getPage() !== $new_page) {
+            $family->setPage($new_page);
+        }
+
+        return $this;
+    }
+
+    public function getWorksheet(): ?Worksheet
+    {
+        return $this->worksheet;
+    }
+
+    public function setWorksheet(?Worksheet $worksheet): self
+    {
+        $this->worksheet = $worksheet;
+
+        // set (or unset) the owning side of the relation if necessary
+        $new_page = null === $worksheet ? null : $this;
+        if ($worksheet->getPage() !== $new_page) {
+            $worksheet->setPage($new_page);
+        }
 
         return $this;
     }

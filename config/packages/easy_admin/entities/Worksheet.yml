@@ -1,0 +1,14 @@
+easy_admin:
+  entities:
+    Worksheet:
+      class: App\Entity\Worksheet
+      label: 'Fiches travaux'
+      list:
+        fields:
+          - id
+          - { property: 'title', label: 'Label' }
+          - { property: 'family', label: 'Famille' }
+      form:
+        fields:
+          - { property: 'title', label: 'Label' }
+          - { property: 'family', label: 'Famille' }

@@ -14,11 +14,15 @@ easy_admin:
                     fields: ['page.title', 'page.description']
             form:
                 fields:
+                    - { type: 'group', columns: 6, label: 'Informations' }
                     - { property: 'title', label: 'Titre' }
-                    - { property: 'intro_title', label: 'Intro titre' }
-                    - { property: 'meta_title', label: 'Méta titre'}
                     - { property: 'description', label: 'Description', type: 'fos_ckeditor'}
-                    - { property: 'intro_description', label: 'Intro description'}
-                    - { property: 'meta_description', label: 'Méta description'}
                     - { property: 'position', label: 'Position', type: 'integer'}
                     - { property: 'page_blocks', label: 'Blocks', type: 'collection'}
+                    - { type: 'group', columns: 6, label: 'SEO' }
+                    - { property: 'meta_title', label: 'Méta titre'}
+                    - { property: 'meta_description', label: 'Méta description'}
+                    - { property: 'slug', label: 'Slug' }
+                    - { type: 'group', columns: 6, label: 'Associations' }
+                    - { property: 'family', label: 'Famille associée'}
+                    - { property: 'worksheet', label: 'Fiche travaux associée'}

@@ -1,0 +1,12 @@
+easy_admin:
+  entities:
+    Family:
+      class: App\Entity\Family
+      label: 'Familles'
+      list:
+        fields:
+          - id
+          - { property: 'title', label: 'Label' }
+      form:
+        fields:
+          - { property: 'title', label: 'Label' }

@@ -9,6 +9,9 @@ easy_admin:
         - { label: 'Pages', entity: 'Page', icon: 'files-o', permission: 'ROLE_EDITOR' }
         - { label: 'Blocks', entity: 'PageBlock', icon: 'columns', permission: 'ROLE_EDITOR' }
         - { label: 'Médias', entity: 'Media', icon: 'picture-o', permission: 'ROLE_EDITOR' }
+        - { label: 'Divers' }
+        - { label: 'Familles', entity: 'Family', icon: 'files-o', permission: 'ROLE_EDITOR' }
+        - { label: 'Fiche travaux', entity: 'Worksheet', icon: 'files-o', permission: 'ROLE_EDITOR' }
         - { label: 'Frontend' }
         - { label: 'Accueil', route: 'homepage', icon: 'home' }
 
