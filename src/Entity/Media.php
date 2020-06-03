@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\HttpFoundation\File\File;
 
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -28,37 +29,25 @@ class Media
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @var string
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="media_image", fileNameProperty="image_name")
+     *
+     * @var File|null
      */
-    private $image;
+    private $image_file;
 
     /**
-     * @Vich\UploadableField(mapping="media_images", fileNameProperty="image")
-     * @var File
+     * @ORM\Column(type="string")
+     *
+     * @var string|null
      */
-    private $imageFile;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mimetype;
+    private $image_name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $alt;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $reference;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PageBlock", inversedBy="medias")
-     */
-    protected $page_block;
-
 
     public function getId(): ?int
     {
@@ -77,18 +66,6 @@ class Media
         return $this;
     }
 
-    public function getMimetype(): ?string
-    {
-        return $this->mimetype;
-    }
-
-    public function setMimetype(string $mimetype): self
-    {
-        $this->mimetype = $mimetype;
-
-        return $this;
-    }
-
     public function getAlt(): ?string
     {
         return $this->alt;
@@ -101,53 +78,38 @@ class Media
         return $this;
     }
 
-    public function getReference(): ?string
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $image_file
+     */
+    public function setImageFile(?File $image_file = null): void
     {
-        return $this->reference;
-    }
+        $this->image_file = $image_file;
 
-    public function setReference(string $reference): self
-    {
-        $this->reference = $reference;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-
-        if ($image) {
-            $this->updated_at = new \DateTime('now');
+        if (null !== $image_file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
         }
     }
 
-    public function getImageFile()
+    public function getImageFile(): ?File
     {
-        return $this->imageFile;
+        return $this->image_file;
     }
 
-    public function getPageBlock(): ?PageBlock
+    public function setImageName(?string $image_name): void
     {
-        return $this->page_block;
+        $this->image_name = $image_name;
     }
 
-    public function setPageBlock(?PageBlock $page_block): self
+    public function getImageName(): ?string
     {
-        $this->page_block = $page_block;
-
-        return $this;
+        return $this->image_name;
     }
 }

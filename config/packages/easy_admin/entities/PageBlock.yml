@@ -8,7 +8,6 @@ easy_admin:
                 fields: 
                     - id
                     - { property: 'title', label: 'Titre' }
-                    - { property: 'slug', label: 'Slug' }
                     - { property: 'position', label: 'Position' }
                     - { property: 'type', label: 'Type' }
                     - { property: 'page', label: 'Page' }
@@ -17,11 +16,12 @@ easy_admin:
                     fields: ['page.title', 'page.slug']
             form:
                 fields:
+                    - { type: 'group', columns: 6, label: 'Informations' }
                     - { property: 'title', label: 'Titre' }
-                    - { property: 'slug', label: 'Slug' }
-                    - { property: 'type', label: 'Méta titre'}
                     - { property: 'content', label: 'Description', type: 'fos_ckeditor'}
+                    - { property: 'type', label: 'Type de block', type: 'choice', type_options: {choices: '%types_block%'}}
                     - { property: 'page', label: 'Page'}
+                    - { property: 'enabled', label: 'Actif'}
                     - { property: 'position', label: 'Position', type: 'integer'}
-                    - { property: 'medias', label: 'Médias', type: 'collection'}
-
+                    - { type: 'group', columns: 6, label: 'Média' }
+                    - { property: 'media', label: 'Média', type: 'App\Form\MediaType'}

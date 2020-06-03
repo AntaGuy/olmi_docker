@@ -1,0 +1,5 @@
+parameters:
+  types_block:
+    Default: 1
+    Slider: 2
+    Tab: 3

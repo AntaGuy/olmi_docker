@@ -28,3 +28,7 @@ node_modules/
 ### IDE ###
 .idea
 .vscode
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

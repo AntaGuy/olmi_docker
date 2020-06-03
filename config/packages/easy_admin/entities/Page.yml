@@ -18,7 +18,6 @@ easy_admin:
                     - { property: 'title', label: 'Titre' }
                     - { property: 'description', label: 'Description', type: 'fos_ckeditor'}
                     - { property: 'position', label: 'Position', type: 'integer'}
-                    - { property: 'page_blocks', label: 'Blocks', type: 'collection'}
                     - { type: 'group', columns: 6, label: 'SEO' }
                     - { property: 'meta_title', label: 'Méta titre'}
                     - { property: 'meta_description', label: 'Méta description'}

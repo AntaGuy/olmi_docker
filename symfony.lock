@@ -127,8 +127,24 @@
     "gedmo/doctrine-extensions": {
         "version": "v2.4.41"
     },
+    "imagine/imagine": {
+        "version": "1.2.3"
+    },
     "jms/metadata": {
         "version": "2.1.0"
+    },
+    "liip/imagine-bundle": {
+        "version": "1.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.8",
+            "ref": "1d42bc3f713130582e6e0c475c49bc327ab0a2a2"
+        },
+        "files": [
+            "config/packages/liip_imagine.yaml",
+            "config/routes/liip_imagine.yaml"
+        ]
     },
     "monolog/monolog": {
         "version": "2.1.0"
@@ -484,6 +500,9 @@
     },
     "symfony/string": {
         "version": "v5.0.8"
+    },
+    "symfony/templating": {
+        "version": "v5.0.9"
     },
     "symfony/translation": {
         "version": "3.3",

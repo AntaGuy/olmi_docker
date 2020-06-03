@@ -30,13 +30,7 @@ class PageBlock
     private $title;
 
     /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
-
-    /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
@@ -57,9 +51,14 @@ class PageBlock
     protected $page;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Media", mappedBy="page_block")
+     * @ORM\Column(type="boolean")
      */
-    private $medias;
+    private $enabled = true;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Media::class, cascade={"persist", "remove"})
+     */
+    private $media;
 
     public function __construct()
     {
@@ -79,18 +78,6 @@ class PageBlock
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }
@@ -143,33 +130,26 @@ class PageBlock
         return $this;
     }
 
-    /**
-     * @return Collection|Media[]
-     */
-    public function getMedias(): Collection
+    public function getEnabled(): ?bool
     {
-        return $this->medias;
+        return $this->enabled;
     }
 
-    public function addMedia(Media $media): self
+    public function setEnabled(bool $enabled): self
     {
-        if (!$this->medias->contains($media)) {
-            $this->medias[] = $media;
-            $media->setPageBlock($this);
-        }
+        $this->enabled = $enabled;
 
         return $this;
     }
 
-    public function removeMedia(Media $media): self
+    public function getMedia(): ?Media
     {
-        if ($this->medias->contains($media)) {
-            $this->medias->removeElement($media);
-            // set the owning side to null (unless already changed)
-            if ($media->getPageBlock() === $this) {
-                $media->setPageBlock(null);
-            }
-        }
+        return $this->media;
+    }
+
+    public function setMedia(?Media $media): self
+    {
+        $this->media = $media;
 
         return $this;
     }

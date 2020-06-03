@@ -55,7 +55,7 @@ class Page
     private $meta_description;
 
     /**
-     *
+     * @Gedmo\SortablePosition
      * @ORM\Column(type="integer")
      */
     private $position;

@@ -20,6 +20,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
       apt-transport-https \
       ca-certificates \
       gnupg2 \
+    libpng-dev \
+    && docker-php-ext-install -j$(nproc) gd \
     && pecl install amqp xdebug \
     && docker-php-ext-enable xdebug \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
