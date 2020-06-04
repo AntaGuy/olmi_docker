@@ -15,7 +15,7 @@ easy_admin:
                     - { property: 'reference', label: 'Référence' }
                     - { property: 'alt', label: 'Alt' }
                     - { property: 'imageFile', type: 'vich_image' }
-                    - { property: 'page_block', label: 'Block'}
+                    - { property: 'pageBlock', label: 'Block'}
             show:
                 fields:
                     - { property: 'image', type: 'image', base_path: '%app.path.media_images%' }

@@ -9,7 +9,7 @@ easy_admin:
                     - id
                     - { property: 'title', label: 'Titre' }
                     - { property: 'position', label: 'Position' }
-                    - { property: 'enabled', label: 'Active', type: 'boolean' }
+                    - { property: 'enabled', label: 'Active' }
                 search:
                     fields: ['page.title', 'page.description']
             form:
@@ -17,11 +17,13 @@ easy_admin:
                     - { type: 'group', columns: 6, label: 'Informations' }
                     - { property: 'title', label: 'Titre' }
                     - { property: 'description', label: 'Description', type: 'fos_ckeditor'}
+                    - { property: 'enabled', label: 'Active'}
                     - { property: 'position', label: 'Position', type: 'integer'}
                     - { type: 'group', columns: 6, label: 'SEO' }
-                    - { property: 'meta_title', label: 'Méta titre'}
-                    - { property: 'meta_description', label: 'Méta description'}
-                    - { property: 'slug', label: 'Slug' }
+                    - { property: 'metaTitle', label: 'Méta titre'}
+                    - { property: 'metaDescription', label: 'Méta description'}
+                    - { property: 'slug', label: 'Slug', type_options: { required: false } }
                     - { type: 'group', columns: 6, label: 'Associations' }
                     - { property: 'family', label: 'Famille associée'}
                     - { property: 'worksheet', label: 'Fiche travaux associée'}
+                    - { property: 'aid', label: 'Aide associée'}

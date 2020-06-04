@@ -19,6 +19,18 @@ class PageBlockRepository extends ServiceEntityRepository
         parent::__construct($registry, PageBlock::class);
     }
 
+    public function findByPage($page)
+    {
+        return $this->createQueryBuilder('b')
+                    ->andWhere('b.page = :page')
+                    ->setParameter('page', $page)
+                    ->orderBy('b.type', 'ASC')
+                    ->addOrderBy('b.position', 'ASC')
+                    ->getQuery()
+                    ->getResult()
+            ;
+    }
+
     // /**
     //  * @return PageBlock[] Returns an array of PageBlock objects
     //  */

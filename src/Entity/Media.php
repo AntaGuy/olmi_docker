@@ -31,18 +31,18 @@ class Media
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="media_image", fileNameProperty="image_name")
+     * @Vich\UploadableField(mapping="media_image", fileNameProperty="imageName")
      *
      * @var File|null
      */
-    private $image_file;
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string")
      *
      * @var string|null
      */
-    private $image_name;
+    private $imageName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -85,13 +85,13 @@ class Media
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $image_file
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
-    public function setImageFile(?File $image_file = null): void
+    public function setImageFile(?File $imageFile = null): void
     {
-        $this->image_file = $image_file;
+        $this->imageFile = $imageFile;
 
-        if (null !== $image_file) {
+        if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTimeImmutable();
@@ -100,16 +100,16 @@ class Media
 
     public function getImageFile(): ?File
     {
-        return $this->image_file;
+        return $this->imageFile;
     }
 
-    public function setImageName(?string $image_name): void
+    public function setImageName(?string $imageName): void
     {
-        $this->image_name = $image_name;
+        $this->imageName = $imageName;
     }
 
     public function getImageName(): ?string
     {
-        return $this->image_name;
+        return $this->imageName;
     }
 }

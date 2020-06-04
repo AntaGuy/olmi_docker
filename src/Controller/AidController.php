@@ -33,13 +33,13 @@ class PageController extends AbstractController
     /**
      * @Route("/{slug}", name="page_show", methods={"GET"})
      */
-    public function show(Page $page, PageBlockRepository $blockRepository): Response
+    public function show(Aid $aid, PageBlockRepository $blockRepository): Response
     {
-        if (!$page->getEnabled()) {
+        if (!$aid->getPage()->getEnabled()) {
             throw $this->createNotFoundException('The page does not exist');
         }
 
-        $blocks = $blockRepository->findByPage($page);
+        $blocks = $blockRepository->findByPage($aid->getPage());
         $blocksByType = [];
         $typesBlock = $this->getParameter('types_block');
 
@@ -47,10 +47,11 @@ class PageController extends AbstractController
             $blocksByType[$block->getType()][] = $block;
         }
 
-        return $this->render('page/show.html.twig', [
+        return $this->render('page/aid.html.twig', [
+            'panel' => $aid->getPanel(),
             'typesBlock' => $typesBlock,
             'blocks' => $blocksByType,
-            'page' => $page,
+            'page' => $aid->getPage(),
         ]);
     }
 }

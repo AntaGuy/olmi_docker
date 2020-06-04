@@ -5,6 +5,12 @@
 {% block body %}
     <h1>Page</h1>
 
+    {% for slide in blocks[typesBlock.Slider] %}
+        {{ slide.title }}
+
+        <img src="{{ asset(slide.media.imageName) | imagine_filter('thumb_widen') }}" alt="{{ slide.media.alt }}"/>
+    {% endfor %}
+
     <table class="table">
         <tbody>
             <tr>

@@ -13,14 +13,17 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
       libxml2 \
       libxml2-dev \
       libreadline-dev \
+      libzip-dev \
       supervisor \
       cron \
-      libzip-dev \
       librabbitmq-dev \
       apt-transport-https \
       ca-certificates \
       gnupg2 \
-    libpng-dev \
+      libpng-dev \
+      libfreetype6-dev \
+      libjpeg62-turbo-dev \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install amqp xdebug \
     && docker-php-ext-enable xdebug \

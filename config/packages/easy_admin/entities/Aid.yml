@@ -1,0 +1,14 @@
+easy_admin:
+  entities:
+    Aid:
+      class: App\Entity\Aid
+      label: 'Aides'
+      list:
+        fields:
+          - id
+          - { property: 'title', label: 'Label' }
+      form:
+        fields:
+          - { property: 'title', label: 'Label' }
+          - { type: 'group', columns: 12, label: 'Panel' }
+          - { property: 'panel', type: 'App\Form\PanelType' }

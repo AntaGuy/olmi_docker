@@ -5,6 +5,11 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.path.media_images: /images/medias
+    types_block:
+        Default: 1
+        Slider: 2
+        Tab: 3
+
 services:
     # default configuration for services in *this* file
     _defaults:

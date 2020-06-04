@@ -5,22 +5,23 @@ liip_imagine:
     resolvers:
         default:
             web_path:
-                web_root: '%kernel.project_dir%/public%app.path.media_images%'
+                web_root: '%kernel.project_dir%/public'
     loaders:
         default:
             filesystem:
                 data_root:
-                    - '%kernel.project_dir%/public%app.path.media_images%'
+                    - '%kernel.project_dir%/public'
+                    - '%kernel.project_dir%/public/images'
+                    - '%kernel.project_dir%/public/images/medias'
     filter_sets:
         name:
             jpeg_quality: 80
         # the name of the "filter set"
         thumb_widen:
             data_loader: default
-            # adjust the image quality to 75%
-            quality: 75
+            quality: 80
 
             # list of transformations to apply (the "filters")
             filters:
                 relative_resize:
-                    widen: 100
+                    widen: 150

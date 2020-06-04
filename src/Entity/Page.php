@@ -47,12 +47,12 @@ class Page
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $meta_title;
+    private $metaTitle;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $meta_description;
+    private $metaDescription;
 
     /**
      * @Gedmo\SortablePosition
@@ -73,7 +73,7 @@ class Page
      * @ORM\OneToMany(targetEntity="App\Entity\PageBlock", cascade={"persist"}, mappedBy="page")
      * @ORM\OrderBy({"position" = "ASC"})
      */
-    private $page_blocks;
+    private $pageBlocks;
 
     /**
      * @ORM\OneToOne(targetEntity=Family::class, mappedBy="page", cascade={"persist", "remove"})
@@ -86,11 +86,16 @@ class Page
     private $worksheet;
 
     /**
+     * @ORM\OneToOne(targetEntity=Aid::class, cascade={"persist", "remove"})
+     */
+    private $aid;
+
+    /**
      * Constructor 
      */
     public function __construct()
     {
-        $this->page_blocks = new ArrayCollection();
+        $this->pageBlocks = new ArrayCollection();
     }
 
     public function __toString()
@@ -141,24 +146,24 @@ class Page
 
     public function getMetaTitle(): ?string
     {
-        return $this->meta_title;
+        return $this->metaTitle;
     }
 
-    public function setMetaTitle(string $meta_title): self
+    public function setMetaTitle(string $metaTitle): self
     {
-        $this->meta_title = $meta_title;
+        $this->metaTitle = $metaTitle;
 
         return $this;
     }
 
     public function getMetaDescription(): ?string
     {
-        return $this->meta_description;
+        return $this->metaDescription;
     }
 
-    public function setMetaDescription(string $meta_description): self
+    public function setMetaDescription(string $metaDescription): self
     {
-        $this->meta_description = $meta_description;
+        $this->metaDescription = $metaDescription;
 
         return $this;
     }
@@ -192,13 +197,13 @@ class Page
      */
     public function getPageBlocks(): Collection
     {
-        return $this->page_blocks;
+        return $this->pageBlocks;
     }
 
     public function addPageBlock(PageBlock $pageBlock): self
     {
-        if (!$this->page_blocks->contains($pageBlock)) {
-            $this->page_blocks[] = $pageBlock;
+        if (!$this->pageBlocks->contains($pageBlock)) {
+            $this->pageBlocks[] = $pageBlock;
             $pageBlock->setPage($this);
         }
 
@@ -207,8 +212,8 @@ class Page
 
     public function removePageBlock(PageBlock $pageBlock): self
     {
-        if ($this->page_blocks->contains($pageBlock)) {
-            $this->page_blocks->removeElement($pageBlock);
+        if ($this->pageBlocks->contains($pageBlock)) {
+            $this->pageBlocks->removeElement($pageBlock);
             // set the owning side to null (unless already changed)
             if ($pageBlock->getPage() === $this) {
                 $pageBlock->setPage(null);
@@ -250,6 +255,18 @@ class Page
         if ($worksheet->getPage() !== $new_page) {
             $worksheet->setPage($new_page);
         }
+
+        return $this;
+    }
+
+    public function getAid(): ?Aid
+    {
+        return $this->aid;
+    }
+
+    public function setAid(?Aid $aid): self
+    {
+        $this->aid = $aid;
 
         return $this;
     }
