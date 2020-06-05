@@ -2,7 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Aid;
+use App\Entity\Family;
 use App\Entity\User;
+use App\Entity\Worksheet;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;

@@ -1,0 +1,9 @@
+{{ panel.title }}
+    {{ dump() }}
+
+    {% for slide in blockTypes(page).Slider %}
+        {{ slide.title }}
+
+        <img src="{{ asset(slide.media.imageName) | imagine_filter('thumb_widen') }}" alt="{{ slide.media.alt }}"/>
+    {% endfor %}
+{{ dump(panel) }}

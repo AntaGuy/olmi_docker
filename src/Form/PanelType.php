@@ -4,13 +4,9 @@ namespace App\Form;
 
 use App\Entity\Panel;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PanelType extends AbstractType
 {
@@ -20,6 +16,7 @@ class PanelType extends AbstractType
             ->add('title')
             ->add('description', TextEditorType::class)
             ->add('media', MediaType::class)
+            ->add('video')
         ;
     }
 

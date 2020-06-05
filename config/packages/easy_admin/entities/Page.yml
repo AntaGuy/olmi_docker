@@ -14,11 +14,12 @@ easy_admin:
                     fields: ['page.title', 'page.description']
             form:
                 fields:
-                    - { type: 'group', columns: 6, label: 'Informations' }
+                    - { type: 'group', columns: 12, label: 'Informations' }
                     - { property: 'title', label: 'Titre' }
-                    - { property: 'description', label: 'Description', type: 'fos_ckeditor'}
+                    - { property: 'description', label: 'Description', type: 'text_editor'}
+                    - { property: 'cta', label: 'Lien du call to action' }
+                    - { property: 'ctaLabel', label: 'Label du call to action' }
                     - { property: 'enabled', label: 'Active'}
-                    - { property: 'position', label: 'Position', type: 'integer'}
                     - { type: 'group', columns: 6, label: 'SEO' }
                     - { property: 'metaTitle', label: 'Méta titre'}
                     - { property: 'metaDescription', label: 'Méta description'}

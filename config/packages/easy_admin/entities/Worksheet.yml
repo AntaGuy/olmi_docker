@@ -10,5 +10,11 @@ easy_admin:
           - { property: 'family', label: 'Famille' }
       form:
         fields:
+          - { type: 'group', columns: 6, label: 'Général' }
           - { property: 'title', label: 'Label' }
           - { property: 'family', label: 'Famille' }
+          - { type: 'group', columns: 6, label: 'Compatibilité' }
+          - { property: 'aids', label: 'Aides compatibles', type_options: { expanded: true, multiple: true }}
+          - { property: 'compatibleWorksheets', label: 'Fiche travaux compatibles', type_options: { expanded: true, multiple: true }}
+          - { type: 'group', columns: 12, label: 'Panel' }
+          - { property: 'panel', type: 'App\Form\PanelType' }

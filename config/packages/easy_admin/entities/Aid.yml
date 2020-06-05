@@ -9,6 +9,10 @@ easy_admin:
           - { property: 'title', label: 'Label' }
       form:
         fields:
+          - { type: 'group', columns: 6, label: 'Général' }
           - { property: 'title', label: 'Label' }
+          - { type: 'group', columns: 6, label: 'Compatibilité' }
+          - { property: 'worksheets', label: 'Fiche travaux compatibles', type_options: { expanded: true, multiple: true }}
+          - { property: 'compatibleAids', label: 'Aides compatibles', type_options: { expanded: true, multiple: true }}
           - { type: 'group', columns: 12, label: 'Panel' }
           - { property: 'panel', type: 'App\Form\PanelType' }

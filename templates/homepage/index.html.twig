@@ -24,5 +24,38 @@
                 </div>
             </div>
         </div>
-    <div>    
+        <br>
+        Pages : <br>
+        {% if pages is not empty %}
+            {% for page in pages %}
+                {% if page.isCms() %}
+                    <a href="{{ path('page_show', {'slug': page.slug}) }}">{{ page.title }}</a> <br>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <br>
+        Toutes les familles : <br>
+        <a href="{{ path('family_index') }}">Tous les travaux</a> <br>
+        <br>
+        Familles : <br>
+        {% if families is not empty %}
+            {% for family in families %}
+                <a href="{{ path('family_show', {'slug': family.slug}) }}">{{ family.title }}</a> <br>
+            {% endfor %}
+        {% endif %}
+        <br>
+        Fiches travaux : <br>
+        {% if worksheets is not empty %}
+            {% for worksheet in worksheets %}
+                <a href="{{ path('worksheet_show', {'slug': worksheet.slug, 'family_slug': worksheet.family.slug}) }}">{{ worksheet.title }}</a> <br>
+            {% endfor %}
+        {% endif %}
+        <br>
+        Aides : <br>
+        {% if aids is not empty %}
+            {% for aid in aids %}
+                <a href="{{ path('aid_show', {'slug': aid.slug}) }}">{{ aid.title|title }}</a> <br>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}

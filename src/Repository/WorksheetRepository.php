@@ -19,6 +19,43 @@ class WorksheetRepository extends ServiceEntityRepository
         parent::__construct($registry, Worksheet::class);
     }
 
+    public function findOneBySlug($value): ?Worksheet
+    {
+        return $this->createQueryBuilder('a')
+                    ->innerJoin('a.page', 'p')
+                    ->andWhere('p.slug = :val')
+                    ->setParameter('val', $value)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+    }
+
+    /**
+     * @return Worksheet[] Returns an array of Worksheet objects
+     */
+    public function findByEnabled()
+    {
+        return $this->createQueryBuilder('a')
+                    ->innerJoin('a.page', 'p')
+                    ->andWhere('p.enabled = 1')
+                    ->getQuery()
+                    ->getResult();
+    }
+
+
+    /**
+     * @return Worksheet[] Returns an array of Worksheet objects
+     */
+    public function findByEnabledByFamily($family)
+    {
+        return $this->createQueryBuilder('a')
+                    ->innerJoin('a.page', 'p')
+                    ->andWhere('p.enabled = 1')
+                    ->andWhere('a.family = :val')
+                    ->setParameter('val', $family)
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Worksheet[] Returns an array of Worksheet objects
     //  */

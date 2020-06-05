@@ -8,8 +8,7 @@ easy_admin:
         - { label: 'CMS' }
         - { label: 'Pages', entity: 'Page', icon: 'files-o', permission: 'ROLE_EDITOR' }
         - { label: 'Blocks', entity: 'PageBlock', icon: 'columns', permission: 'ROLE_EDITOR' }
-        - { label: 'Médias', entity: 'Media', icon: 'picture-o', permission: 'ROLE_EDITOR' }
-        - { label: 'Divers' }
+        - { label: 'Métier' }
         - { label: 'Familles', entity: 'Family', icon: 'files-o', permission: 'ROLE_EDITOR' }
         - { label: 'Fiche travaux', entity: 'Worksheet', icon: 'files-o', permission: 'ROLE_EDITOR' }
         - { label: 'Aides', entity: 'Aid', icon: 'files-o', permission: 'ROLE_EDITOR' }

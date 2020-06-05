@@ -19,6 +19,29 @@ class FamilyRepository extends ServiceEntityRepository
         parent::__construct($registry, Family::class);
     }
 
+    public function findOneBySlug($value): ?Family
+    {
+        return $this->createQueryBuilder('a')
+                    ->innerJoin('a.page', 'p')
+                    ->andWhere('p.slug = :val')
+                    ->setParameter('val', $value)
+                    ->getQuery()
+                    ->getOneOrNullResult()
+            ;
+    }
+
+    /**
+     * @return Family[] Returns an array of Family objects
+     */
+    public function findByEnabled()
+    {
+        return $this->createQueryBuilder('a')
+                    ->innerJoin('a.page', 'p')
+                    ->andWhere('p.enabled = 1')
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Family[] Returns an array of Family objects
     //  */

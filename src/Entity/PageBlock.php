@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+
 /**
  * @ORM\Entity(repositoryClass=PageBlockRepository::class)
  * @ORM\Entity(repositoryClass="Gedmo\Sortable\Entity\Repository\SortableRepository")
@@ -16,6 +17,10 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 class PageBlock
 {
     use TimestampableEntity, SoftDeleteableEntity;
+
+    public const TYPE_DEFAULT = 1;
+    public const SLIDER = 2;
+    public const TAB = 3;
 
     /**
      * @ORM\Id()
@@ -60,10 +65,44 @@ class PageBlock
      */
     private $media;
 
+    protected $types;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $subtitle;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $video;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $icon;
+
     public function __construct()
     {
         $this->medias = new ArrayCollection();
     }
+
+    public static function getTypes(): array
+    {
+        return [
+            'Default' => self::TYPE_DEFAULT,
+            'Slider'  => self::SLIDER,
+            'Tab'     => self::TAB
+        ];
+    }
+
+    public function getTypeToString(): string
+    {
+        $types = array_flip(self::getTypes());
+        return $types[$this->type];
+    }
+
+    /** AUTO GENERATED **/
 
     public function getId(): ?int
     {
@@ -87,7 +126,7 @@ class PageBlock
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 
@@ -118,18 +157,6 @@ class PageBlock
         return $this;
     }
 
-    public function getPage(): ?Page
-    {
-        return $this->page;
-    }
-
-    public function setPage(?Page $page): self
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
     public function getEnabled(): ?bool
     {
         return $this->enabled;
@@ -142,6 +169,18 @@ class PageBlock
         return $this;
     }
 
+    public function getPage(): ?Page
+    {
+        return $this->page;
+    }
+
+    public function setPage(?Page $page): self
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
     public function getMedia(): ?Media
     {
         return $this->media;
@@ -150,6 +189,42 @@ class PageBlock
     public function setMedia(?Media $media): self
     {
         $this->media = $media;
+
+        return $this;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(?string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): self
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }

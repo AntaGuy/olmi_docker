@@ -19,6 +19,33 @@ class AidRepository extends ServiceEntityRepository
         parent::__construct($registry, Aid::class);
     }
 
+    /**
+     * @param $value
+     * @return Aid|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneBySlug($value): ?Aid
+    {
+        return $this->createQueryBuilder('a')
+                    ->innerJoin('a.page', 'p')
+                    ->andWhere('p.slug = :val')
+                    ->setParameter('val', $value)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+    }
+
+    /**
+     * @return Aid[] Returns an array of Aid objects
+     */
+    public function findByEnabled()
+    {
+        return $this->createQueryBuilder('a')
+                    ->innerJoin('a.page', 'p')
+                    ->andWhere('p.enabled = 1')
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Aid[] Returns an array of Aid objects
     //  */

@@ -39,10 +39,46 @@ class Worksheet
      */
     private $page;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Aid::class, inversedBy="worksheets")
+     */
+    private $aids;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Panel::class, cascade={"persist", "remove"})
+     */
+    private $panel;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Worksheet::class)
+     * @ORM\JoinTable(name="worksheet_compatible",
+     *      joinColumns={@ORM\JoinColumn(name="worksheet_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="compatible_worksheet_id", referencedColumnName="id")}
+     *      )
+     */
+    private $compatibleWorksheets;
+
+    public function __construct()
+    {
+        $this->aids = new ArrayCollection();
+        $this->compatibleWorksheets = new ArrayCollection();
+    }
+
     public function __toString()
     {
-        return $this->title;
+        return str_replace('//', '', $this->title);
     }
+
+    public function getSlug()
+    {
+        if ($this->getPage() instanceof Page) {
+            return $this->getPage()->getSlug();
+        }
+
+        return false;
+    }
+
+    /** AUTO GENERATED */
 
     public function getId(): ?int
     {
@@ -81,6 +117,70 @@ class Worksheet
     public function setPage(?Page $page): self
     {
         $this->page = $page;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Aid[]
+     */
+    public function getAids(): Collection
+    {
+        return $this->aids;
+    }
+
+    public function addAid(Aid $aid): self
+    {
+        if (!$this->aids->contains($aid)) {
+            $this->aids[] = $aid;
+        }
+
+        return $this;
+    }
+
+    public function removeAid(Aid $aid): self
+    {
+        if ($this->aids->contains($aid)) {
+            $this->aids->removeElement($aid);
+        }
+
+        return $this;
+    }
+
+    public function getPanel(): ?Panel
+    {
+        return $this->panel;
+    }
+
+    public function setPanel(?Panel $panel): self
+    {
+        $this->panel = $panel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getCompatibleWorksheets(): Collection
+    {
+        return $this->compatibleWorksheets;
+    }
+
+    public function addCompatibleWorksheet(self $compatibleWorksheet): self
+    {
+        if (!$this->compatibleWorksheets->contains($compatibleWorksheet)) {
+            $this->compatibleWorksheets[] = $compatibleWorksheet;
+        }
+
+        return $this;
+    }
+
+    public function removeCompatibleWorksheet(self $compatibleWorksheet): self
+    {
+        if ($this->compatibleWorksheets->contains($compatibleWorksheet)) {
+            $this->compatibleWorksheets->removeElement($compatibleWorksheet);
+        }
 
         return $this;
     }

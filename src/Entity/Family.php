@@ -45,8 +45,19 @@ class Family
 
     public function __toString()
     {
-        return $this->title;
+        return str_replace('//', '', $this->title);
     }
+
+    public function getSlug()
+    {
+        if ($this->getPage() instanceof Page) {
+            return $this->getPage()->getSlug();
+        }
+
+        return false;
+    }
+
+    /** AUTO GENERATED */
 
     public function getId(): ?int
     {

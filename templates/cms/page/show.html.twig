@@ -4,12 +4,14 @@
 
 {% block body %}
     <h1>Page</h1>
+    {{ dump() }}
 
-    {% for slide in blocks[typesBlock.Slider] %}
-        {{ slide.title }}
-
-        <img src="{{ asset(slide.media.imageName) | imagine_filter('thumb_widen') }}" alt="{{ slide.media.alt }}"/>
-    {% endfor %}
+    {% if blockTypes(page).Slider is not empty %}
+        {% for slide in blockTypes(page).Slider %}
+            {{ slide.title }}
+            <img src="{{ asset(slide.media.imageName) | imagine_filter('thumb_widen') }}" alt="{{ slide.media.alt }}"/>
+        {% endfor %}
+    {% endif %}
 
     <table class="table">
         <tbody>

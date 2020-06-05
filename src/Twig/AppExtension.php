@@ -1,6 +1,7 @@
 <?php
 namespace App\Twig;
 
+use App\Repository\PageBlockRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

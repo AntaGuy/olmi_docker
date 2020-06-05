@@ -32,6 +32,11 @@ class Panel
      */
     private $media;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $video;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Panel
     public function setMedia(?Media $media): self
     {
         $this->media = $media;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }

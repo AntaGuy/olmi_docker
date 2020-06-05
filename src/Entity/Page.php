@@ -45,6 +45,16 @@ class Page
     private $description;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cta;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ctaLabel;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $metaTitle;
@@ -86,7 +96,7 @@ class Page
     private $worksheet;
 
     /**
-     * @ORM\OneToOne(targetEntity=Aid::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Aid::class, mappedBy="page", cascade={"persist", "remove"})
      */
     private $aid;
 
@@ -95,13 +105,21 @@ class Page
      */
     public function __construct()
     {
+        $this->position = $this->getId();
         $this->pageBlocks = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->title;
+        return str_replace('//', '', $this->title);
     }
+
+    public function isCms(): bool
+    {
+        return !$this->aid && !$this->worksheet && !$this->family;
+    }
+
+    /** AUTO GENERATED **/
 
     public function getId(): ?int
     {
@@ -268,7 +286,36 @@ class Page
     {
         $this->aid = $aid;
 
+        // set (or unset) the owning side of the relation if necessary
+        $new_page = null === $aid ? null : $this;
+        if ($aid->getPage() !== $new_page) {
+            $aid->setPage($new_page);
+        }
+
         return $this;
     }
-    
+
+    public function getCta(): ?string
+    {
+        return $this->cta;
+    }
+
+    public function setCta(?string $cta): self
+    {
+        $this->cta = $cta;
+
+        return $this;
+    }
+
+    public function getCtaLabel(): ?string
+    {
+        return $this->ctaLabel;
+    }
+
+    public function setCtaLabel(?string $ctaLabel): self
+    {
+        $this->ctaLabel = $ctaLabel;
+
+        return $this;
+    }
 }

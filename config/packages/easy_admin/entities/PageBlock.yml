@@ -2,6 +2,7 @@ easy_admin:
     entities:
         PageBlock:
             class: App\Entity\PageBlock
+            controller: App\Controller\EasyAdmin\PageBlockController
             label: 'Block'
             list:
                 title: 'Liste des blocks de pages'
@@ -9,19 +10,21 @@ easy_admin:
                     - id
                     - { property: 'title', label: 'Titre' }
                     - { property: 'position', label: 'Position' }
-                    - { property: 'type', label: 'Type' }
+                    - { property: 'typeToString', label: 'Type' }
                     - { property: 'page', label: 'Page' }
-                    - { property: 'enabled', label: 'Active', type: 'boolean' }
+                    - { property: 'enabled', label: 'Active'}
                 search:
                     fields: ['page.title', 'page.slug']
             form:
                 fields:
-                    - { type: 'group', columns: 6, label: 'Informations' }
+                    - { type: 'group', columns: 12, label: 'Informations' }
+                    - { property: 'icon', label: 'Icon'}
                     - { property: 'title', label: 'Titre' }
-                    - { property: 'content', label: 'Description', type: 'fos_ckeditor'}
-                    - { property: 'type', label: 'Type de block', type: 'choice', type_options: {choices: '%types_block%'}}
+                    - { property: 'subtitle', label: 'Sous titre' }
+                    - { property: 'content', label: 'Description', type: 'text_editor'}
+                    - { property: 'type', label: 'Type de block'}
                     - { property: 'page', label: 'Page'}
                     - { property: 'enabled', label: 'Actif'}
-                    - { property: 'position', label: 'Position', type: 'integer'}
                     - { type: 'group', columns: 6, label: 'Média' }
                     - { property: 'media', label: 'Média', type: 'App\Form\MediaType'}
+                    - { property: 'video', label: 'Vidéo'}
