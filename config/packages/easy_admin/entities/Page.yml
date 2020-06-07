@@ -6,10 +6,10 @@ easy_admin:
             list:
                 title: 'Liste des pages'
                 fields: 
-                    - id
-                    - { property: 'title', label: 'Titre' }
-                    - { property: 'position', label: 'Position' }
-                    - { property: 'enabled', label: 'Active' }
+                    - { property: 'id', sortable: false }
+                    - { property: 'title', label: 'Titre', sortable: false }
+                    - { property: 'enabled', label: 'Active', sortable: false }
+                    - { property: 'position', label: 'Position', sortable: false }
                 search:
                     fields: ['page.title', 'page.description']
             form:

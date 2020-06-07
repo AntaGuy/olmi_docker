@@ -6,13 +6,13 @@ easy_admin:
             label: 'Block'
             list:
                 title: 'Liste des blocks de pages'
-                fields: 
-                    - id
-                    - { property: 'title', label: 'Titre' }
-                    - { property: 'position', label: 'Position' }
-                    - { property: 'typeToString', label: 'Type' }
-                    - { property: 'page', label: 'Page' }
-                    - { property: 'enabled', label: 'Active'}
+                fields:
+                    - { property: 'id', sortable: false }
+                    - { property: 'title', label: 'Titre', sortable: false }
+                    - { property: 'typeToString', label: 'Type', sortable: false }
+                    - { property: 'page', label: 'Page', sortable: false }
+                    - { property: 'enabled', label: 'Active', sortable: false }
+                    - { property: 'position', label: 'Position', sortable: false }
                 search:
                     fields: ['page.title', 'page.slug']
             form:

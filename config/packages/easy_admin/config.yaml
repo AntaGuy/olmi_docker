@@ -8,3 +8,8 @@ easy_admin:
         form_theme:
             - '@EasyAdmin/form/bootstrap_4.html.twig'
             - '@VichUploader/Form/fields.html.twig'
+        assets:
+            css:
+                - 'admin/css/dragndrop.css'
+            js:
+                - 'admin/js/dragndrop.js'
